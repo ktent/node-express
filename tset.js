@@ -1,4 +1,4 @@
-console.log("¾È³çÇÏ¼¼¿ä Áñ°Å¿î ½ÃÀÛÀÔ´Ï´Ù.")
+console.log("hi enjoy today.")
 app.post("/test", function (req, res) {
     return res.send({
         version: "2.0",
@@ -6,12 +6,12 @@ app.post("/test", function (req, res) {
             outputs: [
                 {
                     basicCard: {
-                        title: "°£´ÜÇÑ ÅØ½ºÆ®¿Í ¹öÆ°¿ä¼Ò",
-                        description: "°£´ÜÇÑ ¹öÆ°°ú ÅØ½ºÆ®ÀÔ´Ï´Ù",
+                        title: "ê°„ë‹¨í•œ í…ìŠ¤íŠ¸ì™€ ë²„íŠ¼ìš”ì†Œ",
+                        description: "ê°„ë‹¨í•œ ë²„íŠ¼ê³¼ í…ìŠ¤íŠ¸ì…ë‹ˆë‹¤",
                         buttons: [
                             {
                                 action: "message",
-                                label: "¿­¾îº¸±â"
+                                label: "ì—´ì–´ë³´ê¸°"
                             }
                         ]
                     }
