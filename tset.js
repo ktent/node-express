@@ -1,4 +1,22 @@
-console.log("hi enjoy today.")
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const Attendance = require('./models/Attendance'); // Attendance ¸ðµ¨À» »ç¿ëÇÏ´Â °æ¿ì
+
+const app = express(); // app °´Ã¼¸¦ Á¤ÀÇÇÕ´Ï´Ù.
+const port = process.env.PORT || 3000; // È¯°æ º¯¼ö¿¡¼­ Æ÷Æ® ¹øÈ£¸¦ °¡Á®¿À°Å³ª ±âº»°ªÀ» ¼³Á¤ÇÕ´Ï´Ù.
+
+app.use(bodyParser.json()); // JSON ¿äÃ» º»¹®À» ÆÄ½ÌÇÕ´Ï´Ù.
+
+// MongoDB ¿¬°á
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/attendance', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+    .then(() => console.log('MongoDB connected successfully'))
+    .catch(err => console.error('MongoDB connection error:', err));
+
+// Å×½ºÆ® ¿£µåÆ÷ÀÎÆ® Ãß°¡
 app.post("/test", function (req, res) {
     return res.send({
         version: "2.0",
@@ -6,12 +24,12 @@ app.post("/test", function (req, res) {
             outputs: [
                 {
                     basicCard: {
-                        title: "ê°„ë‹¨í•œ í…ìŠ¤íŠ¸ì™€ ë²„íŠ¼ìš”ì†Œ",
-                        description: "ê°„ë‹¨í•œ ë²„íŠ¼ê³¼ í…ìŠ¤íŠ¸ìž…ë‹ˆë‹¤",
+                        title: "°£´ÜÇÑ ÅØ½ºÆ®¿Í ¹öÆ°¿ä¼Ò",
+                        description: "°£´ÜÇÑ ¹öÆ°°ú ÅØ½ºÆ®ÀÔ´Ï´Ù",
                         buttons: [
                             {
                                 action: "message",
-                                label: "ì—´ì–´ë³´ê¸°"
+                                label: "¿­¾îº¸±â"
                             }
                         ]
                     }
@@ -19,4 +37,9 @@ app.post("/test", function (req, res) {
             ]
         }
     });
+});
+
+// ¼­¹ö ½ÃÀÛ
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
 });
